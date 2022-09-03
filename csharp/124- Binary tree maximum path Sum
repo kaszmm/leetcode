@@ -1,0 +1,20 @@
+   public int MaxPathSum(TreeNode root)
+        {
+            int[] res = { int.MinValue };
+            maxPathSum(root, res);
+            return res[0];
+        }
+
+        public int maxPathSum(TreeNode root, int[] res)
+        {
+            if (root == null)
+                return 0;
+
+            int left = maxPathSum(root.left, res);
+            left = Math.Max(left, 0);
+            int right =maxPathSum(root.right, res);
+            right = Math.Max(right, 0);
+            res[0] = Math.Max(res[0], root.val + left + right);
+
+            return root.val + Math.Max(left, right);
+        }
